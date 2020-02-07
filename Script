@@ -1,0 +1,25 @@
+#Mario Diaz ASIR 2
+
+$codigo='
+[DllImport("user32.dll", EntryPoint = "FindWindowEx")]public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+[DllImport("User32.dll")]public static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);
+'
+$notepad=Start-Process notepad -PassThru
+$notepad.WaitForInputIdle()
+
+$acciones=Add-Type -MemberDefinition $codigo -Name TextoNotepad -PassThru
+#FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow)
+#SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam)
+
+$acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Hola Neo")
+(New-Object -com SAPI.SpVoice).speak("Hola Neo")
+
+Start-Sleep -Seconds 2
+$acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Matrix te posee")
+(New-Object -com SAPI.SpVoice).speak("Te estoy vigilando")
+
+Start-Sleep -Seconds 2
+$acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Llaman a la puerta")
+(New-Object -com SAPI.SpVoice).speak("Llaman a la puerta")
+
+Start-Process "C:\Users\Mario\Downloads\matrix.gif"
