@@ -16,10 +16,14 @@ $acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle
 
 Start-Sleep -Seconds 2
 $acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Matrix te posee")
-(New-Object -com SAPI.SpVoice).speak("Te estoy vigilando")
+(New-Object -com SAPI.SpVoice).speak("Matrix te posee")
 
 Start-Sleep -Seconds 2
 $acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Llaman a la puerta")
 (New-Object -com SAPI.SpVoice).speak("Llaman a la puerta")
+
+Start-Sleep -Seconds 2
+$acciones::SendMessage([IntPtr]$acciones::FindWindowEx($notepad.MainWindowHandle, [IntPtr]::Zero, "Edit", $null), 0x000C, 0, "Sigue el conejo blanco")
+(New-Object -com SAPI.SpVoice).speak("Sigue el conejo blanco")
 
 Start-Process "C:\Users\Mario\Downloads\matrix.gif"
